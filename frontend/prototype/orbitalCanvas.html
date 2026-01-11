@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Asteroid Orbit Simulation</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="orbitCanvas"></canvas>
+
+<script>
+  const canvas = document.getElementById("orbitCanvas");
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const cx = canvas.width / 2;
+  const cy = canvas.height / 2;
+
+  // Earth
+  const earthRadius = 20;
+
+  // Asteroid object
+  const asteroid = {
+    radius: 180,
+    angle: 0,
+    speed: 0.01,
+    size: 5,
+    
+  };
+
+  function drawEarth() {
+    ctx.beginPath();
+    ctx.arc(cx, cy, earthRadius, 0, Math.PI * 2);
+    ctx.fillStyle = "blue";
+    ctx.fill();
+  }
+
+  function drawAsteroid() {
+    const x = cx + asteroid.radius * Math.cos(asteroid.angle);
+    const y = cy + asteroid.radius * Math.sin(asteroid.angle);
+
+    ctx.beginPath();
+    ctx.arc(x, y, asteroid.size, 0, Math.PI * 2);
+    ctx.fillStyle = "white";
+    ctx.fill();
+  }
+
+  function update() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    drawEarth();
+    drawAsteroid();
+    drawAsteroid();
+
+
+    asteroid.angle += asteroid.speed;
+
+    requestAnimationFrame(update);
+  }
+
+  update();
+</script>
+
+</body>
+</html>
