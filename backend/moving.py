@@ -1,0 +1,1 @@
+VIDEO_PATH=r"C:\Users\HP\Videos\SPACERECORDING.mp4"
